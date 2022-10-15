@@ -1,0 +1,192 @@
+#+TITLE: From Science to Open Source and Back Again
+#+AUTHOR:    Thomas A Caswell
+#+EMAIL:     tcaswell@gmail.com, tcaswell@bnl.gov
+#+DATE:      2022-11
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+STARTUP: beamer
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [aspectratio=169]
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col)
+#+LATEX_HEADER: \usepackage{pgfpages}
+#+latex_header: \setbeamertemplate{navigation symbols}{}
+# #+LATEX_HEADER: \setbeameroption{show notes on second screen}
+
+* Who am I?
+** Who is this guy talking to you?
+    :PROPERTIES:
+    :BEAMER_opt: t
+    :END:
+
+ - Trained as a physicist
+   - studied jammed amorphous systems + dynamics of Leidenfrost drops
+ - <2-> Currently developing data acquisition at NSLS-II
+ - <2-> Current Project Lead of Matplotlib
+ - <2-> PSF Fellow (Q2 2022)
+
+\begin{center}
+\includegraphics<1>[width=.75\linewidth]{raw_img.pdf}
+\includegraphics<2>[width=.5\linewidth]{bluesky-logo-dark.pdf}
+\includegraphics<2>[width=.5\linewidth]{logo2_compressed.pdf}
+\end{center}
+
+** Acknowledgments
+
+- Michael Droettboom, Eric Firing, and the Matplotlib team
+- Dan Allan, Ken Lauer
+- Dora Caswell
+
+* Open source and open science
+** Software is core to the future of science
+- Almost no experimental science is done without a computer and software at some point
+- lots of fields are going through a "big data" revolution
+  - "big data" is "more than we are used to"
+- software lets you ask different questions
+- software encapsulates techniques in a re-usable and transferable way
+
+** What did I do in grad school?
+- two big projects that amounted to finding features in a frame
+- ... and then tracking those features between frames
+- ... and then do statistics on those track to extract Physics
+- Because doing "at scale" could ask new questions
+- Could only do these measurements "at scale" -> completely reliant on
+  software.
+
+** Finding the fringes
+- brief introduction to Leidenfrost drops + interference images
+- post-doc had done initial work by manually counting fringes
+- said "I bet you can automate that and get a time series of the profile"
+- 6-8 mo later I had and 18 mo later (check dates) I defended on it
+- stats on frame count, time range, etc
+  - science that could not have been done without software
+
+** sharing some code
+- had factored out the "linking" algorithm so it was re-usable
+- put this code on github and got it listed on another professor's website
+- someone (Dan Allan) found it
+ - had written some feature finding code
+
+#+begin_quote
+
+Oct 11, 2012, 7:55 PM
+
+Subject: tracking.py
+
+Hi Thomas,
+
+I'm a physics grad at JHU working for Bob Leheny, who is himself a former student of Sidney Nagel. I came across your website a few years ago by way of Eric Weeks' page. Today I checked in on your site and found your pure Python implementation of track.pro.
+
+Over the last few months I implemented the Crocker/Weeks particle location algorithm in pure Python (with a little C). I know you have done the same in C++. Currently, I'm still calling IDL to do the trajectory-linking step, but I am about to try switching to your tracking.py. I'm letting you know that I'm using it, as you request on your web page. Also, maybe we should consider contributing to each other's repositories.
+
+Here's mine: https://github.com/danielballan/mr
+
+Cheers,
+Dan
+
+#+end_quote
+
+- This collaboration grew into =trackpy= which is the merger of our code
+- We have both mostly moved on, but the code is still being maintained and used
+  by others
+  - probably a couple of dozen PhD's were enabled by this code
+- Dan joined me at BNL and has been my closest collaborator for the past 6
+  years
+- The code enabled (and was driven by) our own research, but has had a far
+  greater impact on science than just what we published
+
+** What did I learn in grad school?
+- advanced our understanding of jamming transition and the dynamics of the
+  vapor layer under a Leidenfrost drop
+- Software is critical to the future of science
+- I enjoyed software development more than doing the science
+- scientists do not have time to be both professional software engineers AND do
+  science
+- changed career goal from being a Professor to what ever job let me develop
+  software tools for scientists
+  - "Research Software Engineer" is starting to be a thing, my current job
+    title at BNL is "Computational Scientist"
+  - us-rse org + job board
+
+** How did I start to work on Matplotlib?
+- opened a PR to solve a problem I had (10yrs ago in August)
+- Started answering questions on StackOverflow about Matplotlib while
+  procrastinating my research (sorry Sid)
+- Eventually started reporting + fixing bugs upstream
+- was offered commit rights and asked to start reviewing other PRs
+- was offered co-lead in 2014 (check date)
+- was offered lead in 2016 (check date)
+
+** how did I start to work on h5py
+- Andrew Collete wanted to step away and work needed to be done
+- ... so I did it as best I could
+
+** at BNL
+- started as a post-doc at BNL working on analysis tools for a data platform
+- ... eventually started to work on the data platform
+- ... and then on the data acquisition system
+- 1 year in Dan Allan joined me as a fellow post-doc
+- unique opportunity at NSLS-II because
+  - it was a new facility so no incumbent solution
+  - the scientific Python stack was really starting to pick up steam
+  - availability of document-store database
+  - very supportive management committed to open source and open science
+
+** Dawn of Bluesky
+- goal is to connect experimental data into the scientific Python world with
+  enough meta-data to be useful
+- started as a "for NSLS-II" project
+  - but we started working in the open
+- other US facilities found it useful (SLAC)
+- now used by:
+  - the 5 DOE light sources
+  - international synchrotrons
+  - university labs
+  - individual grad students / researchers
+
+** Why did this work
+
+- Developed in the open from the start
+  - anyone can see the code
+  - anyone can see and participate in the discussions
+  - anyone can influence the code
+- co-designed but independent libraries
+- intentionally tried to turn users into collaborators
+
+** What does the RSE role look like
+- CS departments "doing software for the domain scientists" does not work
+- Just hiring a "software person" for 1-800-fix-mycode
+- must be partnership between RSE and scientists
+  - RSE needs to understand enough of domain to make good decisions
+  - scientist needs to know enough software to have a conversation
+- Communication is key
+  - what assumptions are safe to make?
+  - where are the likely extension points?
+  - Is something worth the technical cost to build it?
+  - What are the right trade offs / abstractions?
+- Both sides are bringing important expertise to the table
+
+** Science and software are team activities
+- Myth of "lone genius" is harmful in both science and software
+- useful software is frequently bigger than one person can physically write
+  - particularly if you include the whole stack!
+- every piece of software I've written with someone is better than everyone I
+  wrote alone
+- science (as a whole) is a collaborative effort to understand how the world
+  works.
+  - the nominal reason we publish is to share knowledge with others and the reason we
+
+** Advice
+- Software is essential to doing science going forward
+- Do not need to be a professional software developer, but software development
+  is a required professional skill (just like writing prose). [credit Numba
+  developer]
+  - just like writing prose is a required professional skill
+  - just like calculus is a required professional skill
+
+- Have a library mentality from the start
+- Work in the open from the start
+- Make friends, build collaborations!
