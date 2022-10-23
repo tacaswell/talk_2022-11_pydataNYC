@@ -28,17 +28,13 @@
  - <2-> Current Project Lead of Matplotlib
  - <2-> PSF Fellow (Q2 2022)
 
-\begin{center}
-\includegraphics<1>[width=.75\linewidth]{raw_img.pdf}
-\includegraphics<2>[width=.5\linewidth]{bluesky-logo-dark.pdf}
-\includegraphics<2>[width=.5\linewidth]{logo2_compressed.pdf}
-\end{center}
+3D-slab view, fringes, blueksky logo, mpl logo
 
 ** Acknowledgments
 
 - Michael Droettboom, Eric Firing, and the Matplotlib team
-- Dan Allan, Ken Lauer
-- Dora Caswell
+- <2-> Dan Allan, Ken Lauer
+- <3-> Dora Caswell
 
 * Open source and open science
 ** Software is core to the future of science
@@ -56,6 +52,8 @@
 - Could only do these measurements "at scale" -> completely reliant on
   software.
 
+* trackpy era
+
 ** Finding the fringes
 - brief introduction to Leidenfrost drops + interference images
 - post-doc had done initial work by manually counting fringes
@@ -64,11 +62,12 @@
 - stats on frame count, time range, etc
   - science that could not have been done without software
 
-** sharing some code
+
+** sharing some code....
 - had factored out the "linking" algorithm so it was re-usable
 - put this code on github and got it listed on another professor's website
-- someone (Dan Allan) found it
- - had written some feature finding code
+
+** ... and making friends
 
 #+begin_quote
 
@@ -89,10 +88,13 @@ Dan
 
 #+end_quote
 
+** trackpy
+
 - This collaboration grew into =trackpy= which is the merger of our code
 - We have both mostly moved on, but the code is still being maintained and used
   by others
-  - probably a couple of dozen PhD's were enabled by this code
+- 287 citations
+  - many out of our field
 - Dan joined me at BNL and has been my closest collaborator for the past 6
   years
 - The code enabled (and was driven by) our own research, but has had a far
@@ -111,6 +113,8 @@ Dan
     title at BNL is "Computational Scientist"
   - us-rse org + job board
 
+* Matplotlib
+
 ** How did I start to work on Matplotlib?
 - opened a PR to solve a problem I had (10yrs ago in August)
 - Started answering questions on StackOverflow about Matplotlib while
@@ -120,9 +124,7 @@ Dan
 - was offered co-lead in 2014 (check date)
 - was offered lead in 2016 (check date)
 
-** how did I start to work on h5py
-- Andrew Collete wanted to step away and work needed to be done
-- ... so I did it as best I could
+* Bluesky
 
 ** at BNL
 - started as a post-doc at BNL working on analysis tools for a data platform
@@ -147,18 +149,28 @@ Dan
   - university labs
   - individual grad students / researchers
 
-** Why did this work
+* Lessons learned
 
+
+** Why did this work?
+
+- co-designed but independent libraries
 - Developed in the open from the start
   - anyone can see the code
   - anyone can see and participate in the discussions
   - anyone can influence the code
-- co-designed but independent libraries
-- intentionally tried to turn users into collaborators
+- invite users to become collaborators
 
-** What does the RSE role look like
+** What does the RSE role not look like?
+
 - CS departments "doing software for the domain scientists" does not work
-- Just hiring a "software person" for 1-800-fix-mycode
+  - incentives are too different
+- Just hiring a "software person" for 1-800-fix-mycode does not work
+  - demoralizing for RSE
+  - leaves a lot of expertise and creativity on the table
+
+** What does the RSE role looks like?
+
 - must be partnership between RSE and scientists
   - RSE needs to understand enough of domain to make good decisions
   - scientist needs to know enough software to have a conversation
@@ -170,6 +182,7 @@ Dan
 - Both sides are bringing important expertise to the table
 
 ** Science and software are team activities
+
 - Myth of "lone genius" is harmful in both science and software
 - useful software is frequently bigger than one person can physically write
   - particularly if you include the whole stack!
@@ -180,13 +193,12 @@ Dan
   - the nominal reason we publish is to share knowledge with others and the reason we
 
 ** Advice
-- Software is essential to doing science going forward
+- Software is essential to doing science.
 - Do not need to be a professional software developer, but software development
-  is a required professional skill (just like writing prose). [credit Numba
+  is a required professional skill
+  - just like writing prose is a required professional skill [credit Numba
   developer]
-  - just like writing prose is a required professional skill
   - just like calculus is a required professional skill
-
 - Have a library mentality from the start
 - Work in the open from the start
 - Make friends, build collaborations!
