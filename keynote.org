@@ -38,65 +38,75 @@
 
 * Open source and open science
 ** Software is core to the future of science
-- Almost no experimental science is done without a computer and software at some point
-- lots of fields are going through a "big data" revolution
-  - "big data" is "more than we are used to"
-- software lets you ask different questions
-- software encapsulates techniques in a re-usable and transferable way
+- Almost all modern experimental science is relies on software
+- <2-> Software lets you ask different questions
+- <3-> software encapsulates techniques in a re-usable and transferable way
 
-** What did I do in grad school?
-- two big projects that amounted to finding features in a frame
-- ... and then tracking those features between frames
-- ... and then do statistics on those track to extract Physics
-- Because doing "at scale" could ask new questions
-- Could only do these measurements "at scale" -> completely reliant on
-  software.
+** What is "Big Data" anyway?
+- "Bigger than you are used to"
+- <2-> Perrin did initial work on Brownian motion of particles in 1908
+  - <2-> Traced colloid tracks by hand using /camera lucida/,
+  - <2-> order hundreds to thousands of displacements measured.
+  - <2-> Physics Nobel Prize in 1926
+- <3-> I also tracked Brownian motion
+  - <3-> 20,000 particles per frame over thousands of frames
+  - <4-> could only (practically) be done with software to find and track the colloids
 
-* trackpy era
-
-** Finding the fringes
+** tracking fringes
 - brief introduction to Leidenfrost drops + interference images
-- post-doc had done initial work by manually counting fringes
+- Justin Burton (post-doc at time now faculty at Emory) had done initial work
+  by manually counting fringes
 - said "I bet you can automate that and get a time series of the profile"
-- 6-8 mo later I had and 18 mo later (check dates) I defended on it
-- stats on frame count, time range, etc
-  - science that could not have been done without software
+  - 2011-11 started work, got prototype working
+  - 2012-06 pulled linking code out to =trackpy=
+  - 2013-12 defended on this work, submitted PRE
+- 1TB of high-speed video to extract dynamics of the rim
+  - 300k frames with 100s of fringes per frame
+- science that could not have been done without software
 
 
-** sharing some code....
-- had factored out the "linking" algorithm so it was re-usable
-- put this code on github and got it listed on another professor's website
+** "If I have seen further it is by standing on the shoulders of Giants"
+-- Isaac Newton
 
-** ... and making friends
+- All of this was made possible by the Scientific Python ecosystem
+- <2-> open sourcing my linking code has had way more impact on science than my research
+  - <2-> paper cited 40 times
+  - <2-> trackpy has been cited 291 times
+
+
+** Software is a team sport
 
 #+begin_quote
-
 Oct 11, 2012, 7:55 PM
 
 Subject: tracking.py
 
 Hi Thomas,
 
-I'm a physics grad at JHU working for Bob Leheny, who is himself a former student of Sidney Nagel. I came across your website a few years ago by way of Eric Weeks' page. Today I checked in on your site and found your pure Python implementation of track.pro.
+I'm a physics grad at JHU working for Bob Leheny, who is himself a former
+student of Sidney Nagel. I came across your website a few years ago by way of
+Eric Weeks' page. Today I checked in on your site and found your pure Python
+implementation of track.pro.
 
-Over the last few months I implemented the Crocker/Weeks particle location algorithm in pure Python (with a little C). I know you have done the same in C++. Currently, I'm still calling IDL to do the trajectory-linking step, but I am about to try switching to your tracking.py. I'm letting you know that I'm using it, as you request on your web page. Also, maybe we should consider contributing to each other's repositories.
+
+Over the last few months I implemented the Crocker/Weeks particle location
+algorithm in pure Python (with a little C). I know you have done the same in
+C++. Currently, I'm still calling IDL to do the trajectory-linking step, but I
+am about to try switching to your tracking.py. I'm letting you know that I'm
+using it, as you request on your web page. Also, maybe we should consider
+contributing to each other's repositories.
 
 Here's mine: https://github.com/danielballan/mr
 
 Cheers,
 Dan
-
 #+end_quote
 
-** trackpy
+** Software is a team sport
 
-- This collaboration grew into =trackpy= which is the merger of our code
-- We have both mostly moved on, but the code is still being maintained and used
-  by others
-- 287 citations
-  - many out of our field
-- Dan joined me at BNL and has been my closest collaborator for the past 6
-  years
+- This led to merging our code bases
+- About 30 people have now contributed to code base
+- many of the citations out of initial field
 - The code enabled (and was driven by) our own research, but has had a far
   greater impact on science than just what we published
 
