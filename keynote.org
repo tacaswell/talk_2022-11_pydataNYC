@@ -140,7 +140,6 @@ Dan
 *** B :BMCOL:
 :PROPERTIES:
 :BEAMER_col: .5
-:BEAMER_ACT: 1-
 :END:
 
 #+begin_center
@@ -156,7 +155,7 @@ Credit: Jake VanderPlas's SciPy 2015 Keynote
 :END:
 
 
-- <2-> trackpy has been cited 295 times
+- <2-> trackpy has been cited 296 times
 - <2-> Leidenfrost paper cited 40 times (Physical Review E 90 (1), 013014)
 
 ** Matplotlib's impact
@@ -188,21 +187,7 @@ https://github.com/mrocklin/arxiv-matplotlib
 :BEAMER_env: onlyenv
 :BEAMER_act: 1-7
 :END:
-**** Library                                                  :B_block:BMCOL:
-:PROPERTIES:
-:BEAMER_col: .5
-:BEAMER_env: block
-:END:
-
-
-- <2-> few assumptions
-- <3-> fail hard and fast
-- <4-> agnostic (as possible) to I/O
-- <5-> solves a class of problems for someone else at some other time
-- <6-> as little global state as possible
-- <7-> used by other code
-
-**** Application                                              :B_block:BMCOL:
+**** Application-like                                         :B_block:BMCOL:
 :PROPERTIES:
 :BEAMER_col: .5
 :BEAMER_env: block
@@ -216,6 +201,20 @@ https://github.com/mrocklin/arxiv-matplotlib
 - <6-> primarily made of global state
 - <7-> used by humans
 
+**** Library-like                                             :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:BEAMER_env: block
+:END:
+
+
+- <2-> few assumptions
+- <3-> fail hard and fast
+- <4-> agnostic (as possible) to I/O
+- <5-> solves a class of problems for someone else at some other time
+- <6-> as little global state as possible
+- <7-> used by other code
+
 *** Application vs Library
 :PROPERTIES:
 :BEAMER_env: onlyenv
@@ -226,11 +225,67 @@ https://github.com/mrocklin/arxiv-matplotlib
 \includegraphics[width=\linewidth]{hard_do.pdf}
 \end{center}
 
-** Libary mindset
+** Case Study                                                       :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:END:
+
+Directory of images named like =./{sample_name}/x_y_{T}C_z.tiff=
+*** col                                                            :B_column:
+:PROPERTIES:
+:BEAMER_env: column
+:BEAMER_opt: T
+:END:
+
+**** Application-like                                         :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: .5
+:BEAMER_ACT: 2,4
+:END:
+
+#+begin_src python
+  g = Path(".").glob("**/*.tiff")
+  out = {}
+  for f in g:
+      data = load(f)
+      sample = f.parents.parts[-1]
+      fn = f.name
+      T = int(fn.split("_")[2][:-1])
+      out[sample] = data.sum() / T
+#+end_src
+
+
+**** Library-like                                             :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: .5
+:BEAMER_ACT: 3,4
+:END:
+
+
+#+begin_src python
+  def load_data(fn):
+      data = load(fn)
+      sample = f.parents.parts[-1]
+      T = f.name.split("_")[2][:-1]
+      return data, sample, int(T)
+
+  g = Path(".").glob("**/*.tiff")
+  out = {}
+  for data, sample, T in (
+          load_data(f) for f in g
+  ):
+      out[sample] = data.sum() / T
+#+end_src
+
+
+** Library mindset
 
 - <+-> What assumptions does this make?
 - <+-> If I do this what _won't_ I be able to do in the future?
-- <+-> Can I describe this input as a ducktype?
+- <+-> Does it leave me a path to the next thing I might want?
+- <+-> What information does each part of the program need to know?
 - <+-> If I make this change who do I break?
 
 * Bluesky
