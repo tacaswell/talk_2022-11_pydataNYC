@@ -11,10 +11,11 @@
 
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [aspectratio=169]
-#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col)
 #+LATEX_HEADER: \usepackage{pgfpages}
 #+latex_header: \setbeamertemplate{navigation symbols}{}
 # #+LATEX_HEADER: \setbeameroption{show notes on second screen}
+
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra) %10BEAMER_ACT(Act)
 
 * Who am I?
 ** Who is this guy talking to you?
@@ -38,19 +39,21 @@
 
 * Open source and open science
 ** Software is core to the future of science
-- Almost all modern experimental science is relies on software
-- <2-> Software lets you ask different questions
-- <3-> software encapsulates techniques in a re-usable and transferable way
+- Software is critical to (almost) all modern experimental science.
+- <2-> ... lets you ask different questions.
+- <3-> ... encapsulates techniques in a re-usable and transferable way.
 
 ** What is "Big Data" anyway?
 - "Bigger than you are used to"
-- <2-> Perrin did initial work on Brownian motion of particles in 1908
-  - <2-> Traced colloid tracks by hand using /camera lucida/,
-  - <2-> order hundreds to thousands of displacements measured.
-  - <2-> Physics Nobel Prize in 1926
-- <3-> I also tracked Brownian motion
-  - <3-> 20,000 particles per frame over thousands of frames
-  - <4-> could only (practically) be done with software to find and track the colloids
+- <2-> Jean Baptiste Perrin did initial work on Brownian motion of particles in
+  1908
+  - <2-> Traced colloidal motion by hand using /camera lucida/.
+  - <2-> Measured order thousands of displacement vectors.
+  - <3-> Physics Nobel Prize in 1926 (proved molecules exist).
+- <4-> I also tracked particles undergoing Brownian motion
+  - <5-> ... did not get the Nobel prize for my work
+  - <6-> 20,000 particles per frame over thousands of frames
+  - <6-> could only (practically) be done with software
 
 ** tracking fringes
 - brief introduction to Leidenfrost drops + interference images
@@ -59,34 +62,29 @@
 - said "I bet you can automate that and get a time series of the profile"
   - 2011-11 started work, got prototype working
   - 2012-06 pulled linking code out to =trackpy=
-  - 2013-12 defended on this work, submitted PRE
+  - 2013-12 defended on this work, submitted Journal Article
 - 1TB of high-speed video to extract dynamics of the rim
   - 300k frames with 100s of fringes per frame
-- science that could not have been done without software
+- Could not have done this "by hand"
 
-
-** "If I have seen further it is by standing on the shoulders of Giants"
--- Isaac Newton
-
-- All of this was made possible by the Scientific Python ecosystem
-- <2-> open sourcing my linking code has had way more impact on science than my research
-  - <2-> paper cited 40 times
-  - <2-> trackpy has been cited 291 times
 
 
 ** Software is a team sport
+:PROPERTIES:
+:BEAMER_opt: shrink=10
+:end:
 
-#+begin_quote
 Oct 11, 2012, 7:55 PM
 
-Subject: tracking.py
+Subject: tracking.py \\
 
-Hi Thomas,
+Hi Thomas, \\
 
 I'm a physics grad at JHU working for Bob Leheny, who is himself a former
 student of Sidney Nagel. I came across your website a few years ago by way of
 Eric Weeks' page. Today I checked in on your site and found your pure Python
-implementation of track.pro.
+implementation of track.pro. \\
+
 
 
 Over the last few months I implemented the Crocker/Weeks particle location
@@ -94,121 +92,339 @@ algorithm in pure Python (with a little C). I know you have done the same in
 C++. Currently, I'm still calling IDL to do the trajectory-linking step, but I
 am about to try switching to your tracking.py. I'm letting you know that I'm
 using it, as you request on your web page. Also, maybe we should consider
-contributing to each other's repositories.
+contributing to each other's repositories. \\
 
-Here's mine: https://github.com/danielballan/mr
+Here's mine: https://github.com/danielballan/mr \\
 
 Cheers,
 Dan
-#+end_quote
+
 
 ** Software is a team sport
 
-- This led to merging our code bases
-- About 30 people have now contributed to code base
-- many of the citations out of initial field
-- The code enabled (and was driven by) our own research, but has had a far
-  greater impact on science than just what we published
+- <+-> This led to merging our code bases
+  - About 30 people have now contributed to code base
+- <+-> Dan joined me at BNL and is my closest collaborator
 
-** What did I learn in grad school?
-- advanced our understanding of jamming transition and the dynamics of the
-  vapor layer under a Leidenfrost drop
-- Software is critical to the future of science
-- I enjoyed software development more than doing the science
-- scientists do not have time to be both professional software engineers AND do
-  science
-- changed career goal from being a Professor to what ever job let me develop
-  software tools for scientists
-  - "Research Software Engineer" is starting to be a thing, my current job
-    title at BNL is "Computational Scientist"
-  - us-rse org + job board
-
-* Matplotlib
-
-** How did I start to work on Matplotlib?
-- opened a PR to solve a problem I had (10yrs ago in August)
-- Started answering questions on StackOverflow about Matplotlib while
-  procrastinating my research (sorry Sid)
-- Eventually started reporting + fixing bugs upstream
-- was offered commit rights and asked to start reviewing other PRs
-- was offered co-lead in 2014 (check date)
-- was offered lead in 2016 (check date)
-
-* Bluesky
-
-** at BNL
-- started as a post-doc at BNL working on analysis tools for a data platform
-- ... eventually started to work on the data platform
-- ... and then on the data acquisition system
-- 1 year in Dan Allan joined me as a fellow post-doc
-- unique opportunity at NSLS-II because
-  - it was a new facility so no incumbent solution
-  - the scientific Python stack was really starting to pick up steam
-  - availability of document-store database
-  - very supportive management committed to open source and open science
-
-** Dawn of Bluesky
-- goal is to connect experimental data into the scientific Python world with
-  enough meta-data to be useful
-- started as a "for NSLS-II" project
-  - but we started working in the open
-- other US facilities found it useful (SLAC)
-- now used by:
-  - the 5 DOE light sources
-  - international synchrotrons
-  - university labs
-  - individual grad students / researchers
-
-* Lessons learned
-
-
-** Why did this work?
-
-- co-designed but independent libraries
-- Developed in the open from the start
-  - anyone can see the code
-  - anyone can see and participate in the discussions
-  - anyone can influence the code
-- invite users to become collaborators
-
-** What does the RSE role not look like?
-
-- CS departments "doing software for the domain scientists" does not work
-  - incentives are too different
-- Just hiring a "software person" for 1-800-fix-mycode does not work
-  - demoralizing for RSE
-  - leaves a lot of expertise and creativity on the table
-
-** What does the RSE role looks like?
-
-- must be partnership between RSE and scientists
-  - RSE needs to understand enough of domain to make good decisions
-  - scientist needs to know enough software to have a conversation
-- Communication is key
-  - what assumptions are safe to make?
-  - where are the likely extension points?
-  - Is something worth the technical cost to build it?
-  - What are the right trade offs / abstractions?
-- Both sides are bringing important expertise to the table
+***                                                                 :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_act: 2
+:END:
+#+begin_center
+#+ATTR_LaTeX: :width .5\textwidth
+[[file:dan_photo.jpg]]
+#+end_center
 
 ** Science and software are team activities
 
-- Myth of "lone genius" is harmful in both science and software
-- useful software is frequently bigger than one person can physically write
-  - particularly if you include the whole stack!
-- every piece of software I've written with someone is better than everyone I
-  wrote alone
-- science (as a whole) is a collaborative effort to understand how the world
+- <+-> Myth of "lone genius" is harmful in both science and software
+- <+-> Science (as a whole) is a collaborative effort to understand how the world
   works.
-  - the nominal reason we publish is to share knowledge with others and the reason we
+  - the nominal reason we publish is to share knowledge
+- <+-> Useful software is bigger than one person can physically write
+  - particularly if you include the whole stack!
+- <+-> Every piece of software I've written together is better than any I wrote
+  alone
 
-** Advice
-- Software is essential to doing science.
-- Do not need to be a professional software developer, but software development
-  is a required professional skill
-  - just like writing prose is a required professional skill [credit Numba
-  developer]
-  - just like calculus is a required professional skill
-- Have a library mentality from the start
-- Work in the open from the start
-- Make friends, build collaborations!
+
+** "If I have seen further it is by standing on the shoulders of Giants" -Newton
+:PROPERTIES:
+:BEAMER_opt: t
+:END:
+#+begin_center
+**All of this was made possible by the Scientific Python ecosystem**
+#+end_center
+
+
+*** B :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:BEAMER_ACT: 1-
+:END:
+
+#+begin_center
+#+ATTR_LaTeX: :width \textwidth
+[[file:shells.png]]
+#+end_center
+
+Credit: Jake VanderPlas's SciPy 2015 Keynote
+
+*** A :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:END:
+
+
+- <2-> trackpy has been cited 295 times
+- <2-> Leidenfrost paper cited 40 times (Physical Review E 90 (1), 013014)
+
+** Matplotlib's impact
+
+
+
+[[file:results.pdf]]
+
+#+begin_center
+https://github.com/mrocklin/arxiv-matplotlib
+#+end_center
+
+
+* Library vs application
+
+** Build volcanos not match sticks
+
+\begin{center}
+\includegraphics<1>[width=.95\linewidth]{volcano1.pdf}
+\includegraphics<2>[width=.95\linewidth]{volcano2.pdf}
+\end{center}
+
+** Application vs Library
+:PROPERTIES:
+:BEAMER_opt: t
+:END:
+*** Application vs Library
+:PROPERTIES:
+:BEAMER_env: onlyenv
+:BEAMER_act: 1-7
+:END:
+**** Library                                                  :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:BEAMER_env: block
+:END:
+
+
+- <2-> few assumptions
+- <3-> fail hard and fast
+- <4-> agnostic (as possible) to I/O
+- <5-> solves a class of problems for someone else at some other time
+- <6-> as little global state as possible
+- <7-> used by other code
+
+**** Application                                              :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:BEAMER_env: block
+:END:
+
+
+- <2-> many assumptions
+- <3-> never fail
+- <4-> opinionated about I/O
+- <5-> solves a particular problem for *me* /right now/
+- <6-> primarily made of global state
+- <7-> used by humans
+
+*** Application vs Library
+:PROPERTIES:
+:BEAMER_env: onlyenv
+:BEAMER_act: 8
+:END:
+
+\begin{center}
+\includegraphics[width=\linewidth]{hard_do.pdf}
+\end{center}
+
+** Libary mindset
+
+- <+-> What assumptions does this make?
+- <+-> If I do this what _won't_ I be able to do in the future?
+- <+-> Can I describe this input as a ducktype?
+- <+-> If I make this change who do I break?
+
+* Bluesky
+
+
+** Dawn of Bluesky
+
+#+ATTR_LaTeX: :width \textwidth
+[[file:bluesky_diagram.jpg]]
+
+started @ NSLS-II, now used world wide
+
+** Dawn of Bluesky
+
+*** Impact and adoption                                       :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:BEAMER_env: block
+:END:
+- Running NSLS-II user operations
+  - (1.3k+ researchers|550+ papers)/yr
+- <2-> also used by...
+  - <2->  other DOE light sources
+  - <2-> international synchrotrons
+  - <2-> university labs
+  - <2-> individual researchers
+
+*** Why did this work?                                        :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:BEAMER_env: block
+:BEAMER_ACT: 3-
+:END:
+- co-designed but independent libraries
+- Developed in the open from the start
+  - anyone can see the code
+  - anyone can see and join discussions
+  - anyone can influence the code
+- invite users to become collaborators
+
+*** footer                                                  :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_ACT: 3-
+:BEAMER_env: ignoreheading
+:END:
+
+\vfill
+
+#+begin_center
+If you have experimental apparatus you want to automate talk to me!
+
+[[mailto:tcaswell@bnl.gov][tcaswell@bnl.gov]]
+#+end_center
+* Software, science, and RSEs
+
+** What do you need to "maintain" an open source project?
+
+#+begin_center
+*You are a maintainer if you feel responsible for the project.*
+#+end_center
+
+- <2-> A stewardship (not ownership) mindset
+  - the project has value because it solves (other) people's problems
+  - project may have existed before you and you want it to exist after you
+- <3-> Empathy
+  - frequently getting users who are having a (very) bad day
+  - everyone is coming from a different place
+- <4-> Community management and people skills
+  - See Melissa Weber Mendonça's keynote tomorrow!
+  - Software is a team sport
+- <5-> Technical skills
+  - "the easy part"
+
+
+** ..and you still do science?!
+
+- <2-> no
+  - <3-> ...but have *enabled* a lot of science and helped a lot of scientists
+- <3-> Scientists do not have time to be domain experts **AND** professional developers
+- <4-> However basic programming is a required professional skill
+  - like math, paper writing, and grant writing
+
+
+*** Enter the Research Software Engineer                            :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_opt: t
+:BEAMER_act: 5
+:END:
+**** quote                                                :B_quotation :BMCOL:
+:PROPERTIES:
+:BEAMER_env: quotation
+:BEAMER_col: .75
+:END:
+\small "We like an inclusive definition of Research Software Engineers to
+encompass those who regularly use expertise in programming to advance
+research. This includes researchers who spend a significant amount of time
+programming, full-time software engineers writing code to solve research
+problems, and those somewhere in-between"
+
+**** logo                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .25
+:END:
+
+#+ATTR_LATEX: :width \textwidth
+[[file:rse_logo.png]]
+\vfill
+
+***                                                                 :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_act: 5
+:END:
+\hfill https://us-rse.org/about/what-is-an-rse/
+
+
+** Research Software Engineer (RSE)
+*** cols                                                          :B_columns:
+:PROPERTIES:
+:BEAMER_opt: t
+:BEAMER_env: columns
+:END:
+
+
+**** What a RSE role is not?                             :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:BEAMER_env: block
+:END:
+
+- Computer Science research
+- <2-> "1-800-fix-mycode"
+
+**** What is a good RSE role?                                 :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:BEAMER_env: block
+:BEAMER_act: 3-
+:END:
+
+- <3-> Communication is key
+  - what assumptions are safe to make?
+  - where are the likely extension points?
+  - What are the right trade offs?
+
+- <4-> Partnership and Collaboration
+  - RSE conversant in domain
+  - Domain scientist conversant in SW
+
+
+
+*** ...                                                     :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+\vfill
+
+#+begin_center
+[[https://us-rse.org]]   \quad | \quad  [[https://us-rse.org/jobs/]]
+#+end_center
+
+
+* Summary
+
+** Advice and Conclusion
+- <+-> Use version control
+- <+-> No really, use version control
+- <+-> Software is essential to doing science
+- <+-> Programming is a required professional skill for working scientists
+- <+-> Have a library mentality from the start
+- <+-> Work in the open from the start
+- <+-> **Make friends and build collaborations!**
+
+** Links
+- US-RSE home page: https://us-rse.org
+- CSCCE home page: https://www.cscce.org
+- Bluesky project homepage: https://blueskyproject.io
+- My blog: https://tacaswell.github.io
+- Use VC: https://tacaswell.github.io/how-i-learned-to-love-vcs.html
+- mpl on arXiv: https://github.com/mrocklin/arxiv-matplotlib
+
+* backup
+
+** backup buffer
+
+
+** How did I start to work on Matplotlib?
+- opened a PR to solve a problem I had (10yrs ago in August)
+  - https://www.nytimes.com/2022/11/05/nyregion/nyc-5g-towers.html
+- started answering questions on StackOverflow about Matplotlib while
+  procrastinating my research (sorry Sid)
+- eventually started reporting & fixing bugs upstream
+- was offered commit rights and asked to start reviewing other PRs
+- was offered co-lead in 2014
+- was offered lead in 2016
