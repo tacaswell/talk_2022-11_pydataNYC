@@ -29,7 +29,37 @@
  - <2-> Current Project Lead of Matplotlib
  - <2-> PSF Fellow (Q2 2022)
 
-3D-slab view, fringes, blueksky logo, mpl logo
+*** images                                                        :B_columns:
+:PROPERTIES:
+:BEAMER_env: columns
+:END:
+
+**** 3D                                                               :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .25
+:END:
+[[file:3Drecon.png]]
+
+**** Fringes                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .25
+:END:
+[[file:single_frame_big.png]]
+
+**** mpl logo                                                         :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:END:
+
+*****                                                               :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:Beamer_act: 2
+:END:
+
+[[file:logo2.pdf]]
+
+[[file:bs_logo.pdf]]
 
 ** Acknowledgments
 
@@ -39,9 +69,13 @@
 
 * Open source and open science
 ** Software is core to the future of science
-- Software is critical to (almost) all modern experimental science.
+- Software is critical to (almost) all modern experimental science [1].
 - <2-> ... lets you ask different questions.
 - <3-> ... encapsulates techniques in a re-usable and transferable way.
+
+\vfill
+
+[1] https://doi.org/10.5281/zenodo.7295423
 
 ** What is "Big Data" anyway?
 - "Bigger than you are used to"
@@ -56,17 +90,42 @@
   - <6-> could only (practically) be done with software
 
 ** tracking fringes
-- brief introduction to Leidenfrost drops + interference images
-- Justin Burton (post-doc at time now faculty at Emory) had done initial work
-  by manually counting fringes
-- said "I bet you can automate that and get a time series of the profile"
-  - 2011-11 started work, got prototype working
-  - 2012-06 pulled linking code out to =trackpy=
-  - 2013-12 defended on this work, submitted Journal Article
-- 1TB of high-speed video to extract dynamics of the rim
-  - 300k frames with 100s of fringes per frame
-- Could not have done this "by hand"
 
+
+*** cols                                                           :B_column:
+:PROPERTIES:
+:BEAMER_env: column
+:BEAMER_OPT: t
+:END:
+
+\vspace{-.5cm}
+#+begin_center
+#+ATTR_LaTeX: :width .8\textwidth
+[[file:raw_img.pdf]]
+#+end_center
+
+\vspace{-1cm}
+
+**** left                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_COL: .5
+:END:
+- Justin Burton manually counted fringes, got science out!
+- "I bet you can automate that and get a time series of the profile" - Me
+**** right                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_COL: .5
+:END:
+
+- 2011-11 got prototype working
+- 2012-06 pulled =trackpy= out
+- 2013-12 defended PhD & paper
+
+** tracking fringes
+[[file:height_khymo.png]]
+
+- 1TB of high-speed video to extract dynamics of the rim
+- Could not have done this "by hand"
 
 
 ** Software is a team sport
@@ -468,7 +527,8 @@ problems, and those somewhere in-between"
 - My blog: https://tacaswell.github.io
 - Use VC: https://tacaswell.github.io/how-i-learned-to-love-vcs.html
 - mpl on arXiv: https://github.com/mrocklin/arxiv-matplotlib
-
+- Daniel Katz talk: https://doi.org/10.5281/zenodo.7295423
+- These slides: https://github.com/tacaswell/talk_2022-11_pydataNYC
 * backup
 
 ** backup buffer
