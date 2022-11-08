@@ -536,7 +536,7 @@ problems, and those somewhere in-between"
 
 ** How did I start to work on Matplotlib?
 - opened a PR to solve a problem I had (10yrs ago in August)
-  - https://www.nytimes.com/2022/11/05/nyregion/nyc-5g-towers.html
+  - https://github.com/matplotlib/matplotlib/pull/1062
 - started answering questions on StackOverflow about Matplotlib while
   procrastinating my research (sorry Sid)
 - eventually started reporting & fixing bugs upstream
