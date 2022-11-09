@@ -69,13 +69,13 @@
 
 * Open source and open science
 ** Software is core to the future of science
-- Software is critical to (almost) all modern experimental science [1].
+- Software is critical to (almost) all modern experimental science \footnote{https://doi.org/10.5281/zenodo.7295423}.
 - <2-> ... lets you ask different questions.
 - <3-> ... encapsulates techniques in a re-usable and transferable way.
 
 \vfill
 
-[1] https://doi.org/10.5281/zenodo.7295423
+
 
 ** What is "Big Data" anyway?
 - "Bigger than you are used to"
@@ -162,7 +162,7 @@ Dan
 ** Software is a team sport
 
 - <+-> This led to merging our code bases
-  - About 30 people have now contributed to code base
+  - About 30 people have now contributed to =trackpy=
 - <+-> Dan joined me at BNL and is my closest collaborator
 
 ***                                                                 :B_block:
@@ -224,7 +224,7 @@ Credit: Jake VanderPlas's SciPy 2015 Keynote
 [[file:results.pdf]]
 
 #+begin_center
-https://github.com/mrocklin/arxiv-matplotlib
+https://www.coiled.io/blog/how-popular-is-matplotlib
 #+end_center
 
 
@@ -244,40 +244,44 @@ https://github.com/mrocklin/arxiv-matplotlib
 *** Application vs Library
 :PROPERTIES:
 :BEAMER_env: onlyenv
-:BEAMER_act: 1-7
+:BEAMER_act: 1-6
 :END:
-**** Application-like                                         :B_block:BMCOL:
+**** cols                                                         :B_columns:
+:PROPERTIES:
+:BEAMER_env: columns
+:END:
+***** Application-like                                        :B_block:BMCOL:
 :PROPERTIES:
 :BEAMER_col: .5
 :BEAMER_env: block
 :END:
 
 
-- <2-> many assumptions
-- <3-> never fail
-- <4-> opinionated about I/O
-- <5-> solves a particular problem for *me* /right now/
-- <6-> primarily made of global state
-- <7-> used by humans
+- <2-> solves a particular problem for *me* /right now/
+- <3-> used by humans
+- <4-> many assumptions
+- <5-> opinionated about I/O
+- <6-> never fail
 
-**** Library-like                                             :B_block:BMCOL:
+***** Library-like                                            :B_block:BMCOL:
 :PROPERTIES:
 :BEAMER_col: .5
 :BEAMER_env: block
 :END:
 
 
-- <2-> few assumptions
-- <3-> fail hard and fast
-- <4-> agnostic (as possible) to I/O
-- <5-> solves a class of problems for someone else at some other time
-- <6-> as little global state as possible
-- <7-> used by other code
+- <2-> solves a class of problems for someone else at some other time
+- <3-> used by other code
+- <4-> few assumptions
+- <5-> agnostic (as possible) to I/O
+- <6-> fail hard and fast
+
+
 
 *** Application vs Library
 :PROPERTIES:
 :BEAMER_env: onlyenv
-:BEAMER_act: 8
+:BEAMER_act: 7
 :END:
 
 \begin{center}
@@ -307,7 +311,7 @@ Directory of images named like =./{sample_name}/x_y_{T}C_z.tiff=
   g = Path(".").glob("**/*.tiff")
   out = {}
   for f in g:
-      data = load(f)
+      data = tifffile.imread(f)
       sample = f.parents.parts[-1]
       fn = f.name
       T = int(fn.split("_")[2][:-1])
@@ -325,25 +329,25 @@ Directory of images named like =./{sample_name}/x_y_{T}C_z.tiff=
 
 #+begin_src python
   def load_data(fn):
-      data = load(fn)
+      data = tifffile.imread(fn)
       sample = f.parents.parts[-1]
       T = f.name.split("_")[2][:-1]
       return data, sample, int(T)
 
   g = Path(".").glob("**/*.tiff")
-  out = {}
-  for data, sample, T in (
-          load_data(f) for f in g
-  ):
-      out[sample] = data.sum() / T
+  gen = map(load_data, g)
+  out = {
+      sample: data.sum() / T
+      for data, sample, T in gen
+  }
 #+end_src
 
 
 ** Library mindset
 
-- <+-> What assumptions does this make?
-- <+-> If I do this what _won't_ I be able to do in the future?
-- <+-> Does it leave me a path to the next thing I might want?
+- <+-> What assumptions am I making?
+- <+-> If I make this choice, what _won't_ I be able to do in the future?
+- <+-> What is the next (next) thing I'll want to do?  Does this have a path to that?
 - <+-> What information does each part of the program need to know?
 - <+-> If I make this change who do I break?
 
@@ -410,11 +414,11 @@ If you have experimental apparatus you want to automate talk to me!
   - the project has value because it solves (other) people's problems
   - project may have existed before you and you want it to exist after you
 - <3-> Empathy
-  - frequently getting users who are having a (very) bad day
   - everyone is coming from a different place
-- <4-> Community management and people skills
-  - See Melissa Weber Mendonça's keynote tomorrow!
+  - frequently getting users who are having a (very) bad day
+- <4-> Community Management and people skills
   - Software is a team sport
+  - See Melissa Weber Mendonça's keynote tomorrow!
 - <5-> Technical skills
   - "the easy part"
 
@@ -428,7 +432,7 @@ If you have experimental apparatus you want to automate talk to me!
   - like math, paper writing, and grant writing
 
 
-*** Enter the Research Software Engineer                            :B_block:
+*** Enter the Research Software Engineer (RSE)                      :B_block:
 :PROPERTIES:
 :BEAMER_env: block
 :BEAMER_opt: t
@@ -518,7 +522,7 @@ problems, and those somewhere in-between"
 - <+-> Programming is a required professional skill for working scientists
 - <+-> Have a library mentality from the start
 - <+-> Work in the open from the start
-- <+-> **Make friends and build collaborations!**
+- <+-> **Make friends! Build collaborations! Have fun!**
 
 ** Links
 - US-RSE home page: https://us-rse.org
@@ -526,9 +530,15 @@ problems, and those somewhere in-between"
 - Bluesky project homepage: https://blueskyproject.io
 - My blog: https://tacaswell.github.io
 - Use VC: https://tacaswell.github.io/how-i-learned-to-love-vcs.html
-- mpl on arXiv: https://github.com/mrocklin/arxiv-matplotlib
+- mpl on arXiv source: https://github.com/mrocklin/arxiv-matplotlib
 - Daniel Katz talk: https://doi.org/10.5281/zenodo.7295423
 - These slides: https://github.com/tacaswell/talk_2022-11_pydataNYC
+
+#+begin_center
+[[mailto:tcaswell@gmail.com][tcaswell@gmail.com]] | [[mailto:tcaswell@bnl.gov][tcaswell@bnl.gov]] | [[https://fosstodon.org/@tacaswell][@tacaswell@fosstodon.org]]
+#+end_center
+
+
 * backup
 
 ** backup buffer
